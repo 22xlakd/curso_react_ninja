@@ -2,15 +2,12 @@ import React, { Component } from "react";
 import Ninjas from "./Ninjas";
 import AddNinja from "./AddNinja";
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            ninjas: [
-                { name: "Ryu", age: 30, belt: "Black", id: 1 },
-                { name: "Yoshi", age: 19, belt: "Green", id: 2 },
-                { name: "Crystal", age: 28, belt: "pink", id: 3 }
-            ]
-        };
+    state = {
+        ninjas: [
+            { name: "Ryu", age: 30, belt: "Black", id: 1 },
+            { name: "Yoshi", age: 28, belt: "Brown", id: 2 },
+            { name: "Crystal", age: 22, belt: "Green", id: 3 }
+        ]
     }
     addNinja = (ninja) => {
         ninja.id = Math.random();
