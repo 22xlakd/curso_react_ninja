@@ -1,28 +1,43 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { Component } from "react";
+import Ninjas from "./Ninjas";
+import AddNinja from "./AddNinja";
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            ninjas: [
+                { name: "Ryu", age: 30, belt: "Black", id: 1 },
+                { name: "Yoshi", age: 19, belt: "Green", id: 2 },
+                { name: "Crystal", age: 28, belt: "pink", id: 3 }
+            ]
+        };
+    }
+    addNinja = (ninja) => {
+        ninja.id = Math.random();
+        let ninjas = [...this.state.ninjas, ninja];
+        this.setState({
+            ninjas: ninjas
+        })
+        console.log("llega add ninja", this.state.ninjas);
+    }
+    deleteNinja = (id) => {
+        let ninjas = this.state.ninjas.filter(ninja => {
+            return ninja.id !== id
+        });
+        this.setState({
+            ninjas: ninjas
+        });
+    }
+    render() {
+        return (
+            <div className="App">
+                <h1>My first React app!</h1>
+                <p>Welcome :)</p>
+                <Ninjas ninjas={ this.state.ninjas } deleteNinja={ this.deleteNinja } />
+                <AddNinja addNinja={ this.addNinja } />
+            </div>
+        );
+    }
 }
 
 export default App;
